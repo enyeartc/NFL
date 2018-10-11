@@ -1,6 +1,12 @@
-# What are the odds..
+# Betting the Spread
 
 ### Motivation and Background
+
+Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread.
+
+<img src="./images/broncos_spread.png" style="width:50%; height:auto; margin:auto">
+
+My dad's faithful criticism of the Broncos has inspired me to try and build a model to predict whether an NFL team beat the spread or not. For the scope of the project, I am only looking at Regular Season NFL Games from 2012 to 2018.
 
 ### The Data
 I initially wrote a web scrapper using BeautifulSoup to gather the closing odds
