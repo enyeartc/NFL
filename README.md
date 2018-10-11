@@ -73,6 +73,14 @@ After I aggregated all of my data, I standardized my data using StandardScaler a
 
 ### Modeling the Spread
 
+Since none of the features seemed to have a clear indication point where teams started to beat the spread, I decided to use a Linear Regression instead of a Logistic Regression to predict the spread.
+
+To create the Linear Model, I imported the dataset, used StandardScaler to scale the data and the target, and divided the data into a training set and a validation set. Once I trained my model I plotted the qq-plot and the residuals against the predictions to check the validity of my model. The qq-plot appears to be approximately normal and the residuals appear to be heteroscedastic.
+
+Heteroscedasity           |  qq-plot
+:-------------------------:|:-------------------------:
+!<img src="./graphs/heteroscedasiticity.png" width=300>  |  !<img src="./graphs/validity.png" width=300>
+
 ### Improving the Model
 
 ### Results - Why are these models not performing well?
