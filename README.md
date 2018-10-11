@@ -1,6 +1,6 @@
 # Betting the Spread
 
-### Motivation and Background
+### Background
 Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread. However, since 2012, the Broncos have beaten the spread in 51% of the games they played.
 
 <img src="./graphs/broncos_against_the_spread.png" width="400">
@@ -36,30 +36,44 @@ Unfortunately, the average spreads for the previous games for both the home team
  <img src="./graphs/rolling_score_vs_spread.gif">
 
 ### Feature Selection
+The game statistics came from the Fantasy Data API, which had 242 individual features from each game. From the available attributes, I selected the 35 which I thought would be most predictive of the actual spread. Passing yards, rushing yards, third-down efficiency, and scoring statistics were among some of the features I initially selected from the API.
 
-* Week
-* Season
-* Team
-* Opponent
-* HomeOrAway
-* PointSpread
-* TotalScore
-* Score
-* OpponentScore
-* FirstDowns
-* PassingYards
-* RushingYards
-* ScoreQuarter1
-* ScoreQuarter
-* ScoreQuarter3
-* ScoreQuarter4
-* Touchdowns
-* TurnoverDifferential
-* RedZoneAttempts
-* RedZoneConversions
-* ThirdDownPercentage
-* RedZoneEfficiency
-* Win Totals
+Once I gathered and cleaned the data, I calculated a rolling average for each of the quantitative features over the previous 5 games for each team. I then combined the rolling averages with the NFL schedule and spread information to create my final dataset.
+
+```
+    # calculate moving averages for each team
+    for team in teams:
+        for col in columns:
+            team["{}MovingAvg".format(col)] = team[col].shift(1).rolling(WINDOW).mean()
+```
+
+After I had my dataset with the moving averages
+
+
+
+<img src="./graphs/lasso.png" height="500">
+
+| Feature| Coefficients|
+|--------|-------|
+|HomeOpponentScoreMovingAvg | 0.133 |
+|HomeScoreMovingAvg |-0.095 |
+|AwayScoreMovingAvg| 0.074|
+|AwayTurnoverDifferentialMovingAvg| 0.055|
+|AwayScoreQuarter3MovingAvg|0.053|
+|HomeFirstDownsMovingAvg|-0.044|
+|OverUnder|-0.042|
+|HomeScoreQuarter2MovingAvg|-0.037|
+|HomeScoreQuarter3MovingAvg|-0.036|
+|AwayThirdDownPercentageMovingAvg|0.035|
+|HomeRedZoneAttemptsMovingAvg|-0.029|
+|AwayOpponentRedZoneAttemptsMovingAvg|-0.029|
+|AwayOpponentRedZoneEfficiencyMovingAvg|0.027|
+|AwayOpponentScoreMovingAvg|-0.023|
+|AwayOpponentTouchdownsMovingAvg|-0.019|
+|omeOpponentScoreQuarter2MovingAvg|0.018|
+|AwayScoreQuarter2MovingAvg|0.016|
+
+
 
 ### Modeling the Difficulty of a Climb
 

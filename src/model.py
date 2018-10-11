@@ -4,41 +4,15 @@ import matplotlib.pyplot as plt
 from feature_selection import SELECTED_FEATURES
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate, train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LassoCV, Ridge
+from utils import XyScalar
 import statsmodels.api as sm
 
-
-class XyScalar:
-
-    def __init__(self):
-        self.X_scalar = StandardScaler()
-        self.y_scalar = StandardScaler()
-
-    def fit(self, X, y):
-        self.X_scalar.fit(X)
-        self.y_scalar.fit(y.reshape(-1, 1))
-        return self
-
-    def transform_X(self, X):
-        return self.X_scalar.transform(X)
-
-    def transform(self, X, y):
-        return self.X_scalar.transform(X), self.y_scalar.transform(y.reshape(-1, 1)).flatten()
-
-    def fit_transform(self, X, y):
-        return self.fit(X, y).transform(X, y)
-
-    def inverse_transform(self, X, y):
-        return self.X_scalar.inverse_transform(X), self.y_scalar.inverse_transform(y.reshape(-1, 1)).flatten()
-
-    def inverse_transform_y(self, y):
-        return self.y_scalar.inverse_transform(y.reshape(-1, 1)).flatten()
 
 
 class Model:
 
-    def __init__(self, classifier=LinearRegression, *args, **kwargs):
+    def __init__(self, classifier=LinearRegression, **kwargs):
         df = pd.read_csv('../data/nfl_data.csv', index_col=0)
         #
         X_values, y_values = df.select_dtypes(include=['int', 'float64']).drop(['OpponentScore', 'Score'], axis=1), (df['OpponentScore'] - df['Score']).values
@@ -69,10 +43,8 @@ class Model:
         predicted = model.predict(x_test)
         residuals = y_test - predicted
 
-
         plt.figure()
-        xs = np.arange(-1.5, 2.5)
-        print(xs)
+        xs = np.linspace(-1.5, 2.5)
         plt.plot(xs, xs * 0, c='r')
         plt.scatter(predicted, residuals)
         plt.xlabel('Predicted')
@@ -85,12 +57,13 @@ class Model:
         model = self.linear.fit(X_train, y_train)
         residuals = y_test - model.predict(x_test)
         plt.figure()
-        sm.graphics.qqplot(residuals, line='45')
+        sm.graphics.qqplot(residuals, line='45', tol=.01)
         plt.show()
 
 
 def main():
-    model = Model(LassoCV, cv=15, tol=.01)
+    # model = Model(LassoCV, cv=15, tol=.01)
+    model = Model(LinearRegression)
     print(model.cross_validate().mean())
     model.plot_heteroscedasticity()
     # print(model.predict(model.X_hold))
