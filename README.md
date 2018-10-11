@@ -3,11 +3,11 @@
 ### Background
 Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread. However, since 2012, the Broncos have beaten the spread in 51% of the games they played.
 
-<img src="./graphs/broncos_against_the_spread.png" width="400">
+<img src="./graphs/broncos_against_the_spread.png" width="500">
 
-But if I had to guess whether or not the Broncos cover the spread this weekend again the undefeated Los Angles Rams, I would guess that they don't.
+But if I had to guess whether or not the Broncos cover the spread this weekend again the undefeated Los Angles Rams, I would bet that they don't because the Broncos never beat the spread.
 
-<img src="./images/broncos_spread.png" width="350">
+<img src="./images/broncos_spread.png" width="400">
 
 My dad's faithful criticism of the Broncos inspired me to try and build a model to predict whether an NFL team beat the spread or not. For the scope of the project, I am only looking at Regular Season NFL Games from 2012 to 2018.
 
@@ -25,7 +25,7 @@ Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing o
 
 When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less 44% of the time.
 
- <img src="./graphs/beat_the_spread_by_team.png"></br>
+ <img src="./graphs/beat_the_spread_by_team.png" widtch="900">
 
 Next, I wanted to see if there was any relationship between the average spread of the home team's previous game and the actual spread for the game. I also created a graph to illustrate the same relationship for the opposing team.
 
@@ -33,7 +33,7 @@ Next, I wanted to see if there was any relationship between the average spread o
 
 Unfortunately, the average spreads for the previous games for both the home team and the away team don't have much predictive power for the actual spread, but I made a cool 3D spinning graph to further emphasis this point.
 
- <img src="./graphs/rolling_score_vs_spread.gif">
+ <img src="./graphs/rolling_score_vs_spread.gif" width="700">
 
 ### Feature Selection
 The game statistics came from the Fantasy Data API, which had 242 individual features from each game. From the available attributes, I selected the 35 which I thought would be most predictive of the actual spread. Passing yards, rushing yards, third-down efficiency, and scoring statistics were among some of the features I initially selected from the API.
@@ -47,9 +47,30 @@ Once I gathered and cleaned the data, I calculated a rolling average for each of
             team["{}MovingAvg".format(col)] = team[col].shift(1).rolling(WINDOW).mean()
 ```
 
-After I aggregated all of my data, I standardized my data using StandardScaler and used LassoCV to find which features would give me the best results. The Lasso reduced my features from about 60  to 17 meaningful attributes with an alpha of about 0.7.
 
-<img src="./graphs/lasso.png" height="500">
+
+### Modeling the Spread
+
+Since none of the features seemed to have a clear indication point where teams started to beat the spread, I decided to use a Linear Regression instead of a Logistic Regression to predict the spread.
+
+To create the Linear Model, I imported the dataset, used StandardScaler to scale the data and the target, and divided the data into a training set and a validation set. Once I trained my model I plotted the qq-plot and the residuals against the predictions to check the validity of my model. The qq-plot appears to be approximately normal and the residuals appear to be heteroscedastic.
+
+Heteroscedasity           |  qq-plot
+:-------------------------:|:-------------------------:
+<img src="./graphs/heteroscedasiticity.png" width=600>  |  <img src="./graphs/validity.png" width=600>
+
+
+#### Linear Regression Cross Validation
+|           |           |           |           |           |           |           |           |           |           |           |Average |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+|Train Score | 0.48838864 | 0.53382886 | 0.49193608 | 0.51867646 | 0.4660482 | 0.47663457 | 0.4947181 | 0.45713115 | 0.49576167 | 0.4938967 | 0.491702043|
+|Test Score | -0.21925802 | -4.10123721 |  0.01212025 | -0.50508861 |  0.2166948 | 0.04728843 | -0.76572212 |  0.29539195 |  0.01962774 | -0.12234241 | -0.51225252|
+
+When I cross-validated my Linear Model that used all of the features, I got an average R^2 of about 0.49 for the training data and an average R^2 of about -0.51. Since the R^2 for the training data is much higher than the R^2 for the test data, it suggests that the model is too complex and is offer fitting the training data.
+
+### Improving the Model
+
+To improve the model, I used a Lasso Regression to limit the complexity of the model. LassoCV gave me an optimum alpha of about 0.7 and reduced my dataset from 60 features to 17 meaningful attributes.
 
 | Feature| Coefficients|
 |--------|-------|
@@ -71,20 +92,14 @@ After I aggregated all of my data, I standardized my data using StandardScaler a
 |omeOpponentScoreQuarter2MovingAvg|0.018|
 |AwayScoreQuarter2MovingAvg|0.016|
 
-### Modeling the Spread
+#### Lasso Regression Cross Validation
+|           |           |           |           |           |           |           |           |           |           |           |Average |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+|Train Score |0.230035175 | 0.209691681 | 0.245795047 | 0.202699824 | 0.210255899 | 0.202697571 | 0.173898405 | 0.242855441 | 0.202094685 | 0.192109155 | 0.211213288 |
+|Test Score |-0.016490331 | 0.219385062 | -0.063166148 | 0.167903206 | 0.22565625 | 0.079275502 | 0.121628334 | 0.101823782 | 0.15183329 | 0.27251009 | 0.126035903 |
 
-Since none of the features seemed to have a clear indication point where teams started to beat the spread, I decided to use a Linear Regression instead of a Logistic Regression to predict the spread.
-
-To create the Linear Model, I imported the dataset, used StandardScaler to scale the data and the target, and divided the data into a training set and a validation set. Once I trained my model I plotted the qq-plot and the residuals against the predictions to check the validity of my model. The qq-plot appears to be approximately normal and the residuals appear to be heteroscedastic.
-
-Heteroscedasity           |  qq-plot
-:-------------------------:|:-------------------------:
-!<img src="./graphs/heteroscedasiticity.png" width=300>  |  !<img src="./graphs/validity.png" width=300>
-
-### Improving the Model
 
 ### Results - Why are these models not performing well?
 
 ### Future Work
 
-### References
