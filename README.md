@@ -1,11 +1,11 @@
 # Betting the Spread
 
 ### Background
-Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread. However, since 2012, the Broncos have beaten the spread in 51% of the games they played.
+Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread.
 
 <img src="./graphs/broncos_against_the_spread.png" width="500">
 
-But if I had to guess whether or not the Broncos cover the spread this weekend again the undefeated Los Angles Rams, I would bet that they don't because the Broncos never beat the spread.
+Even though the Broncos never seemingly beat the spread, since 2012, the Broncos have beaten the spread in 51% of the games they played. But if I had to guess whether or not the Broncos cover the spread this weekend against the undefeated Los Angles Rams, I would bet that they don't because the Broncos never beat the spread.
 
 <img src="./images/broncos_spread.png" width="400">
 
