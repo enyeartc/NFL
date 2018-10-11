@@ -23,11 +23,17 @@ Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing o
 
 ### EDA
 
+When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less 44% of the time.
+
+ <img src="./graphs/beat_the_spread_by_team.png"></br>
+
+Next, I wanted to see if there was any relationship between the average spread of the home team's previous game and the actual spread for the game. I also created a graph to illustrate the same relationship for the opposing team. Unfortunately, the average spreads for the previous games for both the home team and the away team don't have much predictive power for the actual spread, but I made a cool 3D spinning graph to further emphasis this point.
+
  <img src="./graphs/rolling_score_vs_spread.png"></br>
 
  <img src="./graphs/rolling_score_vs_spread.gif">
 
-### Feature Engineering
+### Feature Selection
 
 * Week
 * Season
