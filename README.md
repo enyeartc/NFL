@@ -27,10 +27,11 @@ When I first approached this problem, I wanted to see if certain teams covered t
 
  <img src="./graphs/beat_the_spread_by_team.png"></br>
 
-Next, I wanted to see if there was any relationship between the average spread of the home team's previous game and the actual spread for the game. I also created a graph to illustrate the same relationship for the opposing team. Unfortunately, the average spreads for the previous games for both the home team and the away team don't have much predictive power for the actual spread, but I made a cool 3D spinning graph to further emphasis this point.
+Next, I wanted to see if there was any relationship between the average spread of the home team's previous game and the actual spread for the game. I also created a graph to illustrate the same relationship for the opposing team.
 
- <img src="./graphs/rolling_score_vs_spread.png"></br>
+ <img src="./graphs/rolling_score_vs_spread.png">
 
+Unfortunately, the average spreads for the previous games for both the home team and the away team don't have much predictive power for the actual spread, but I made a cool 3D spinning graph to further emphasis this point.
  <img src="./graphs/rolling_score_vs_spread.gif">
 
 ### Feature Selection
