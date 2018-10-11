@@ -47,9 +47,7 @@ Once I gathered and cleaned the data, I calculated a rolling average for each of
             team["{}MovingAvg".format(col)] = team[col].shift(1).rolling(WINDOW).mean()
 ```
 
-After I had my dataset with the moving averages
-
-
+After I aggregated all of my data, I standardized my data using StandardScaler and used LassoCV to find which features would give me the best results. The Lasso reduced my features from about 60  to 17 meaningful attributes with an alpha of about 0.7.
 
 <img src="./graphs/lasso.png" height="500">
 
@@ -73,13 +71,9 @@ After I had my dataset with the moving averages
 |omeOpponentScoreQuarter2MovingAvg|0.018|
 |AwayScoreQuarter2MovingAvg|0.016|
 
+### Modeling the Spread
 
-
-### Modeling the Difficulty of a Climb
-
-### Improving the Grade Model?
-
-### Modeling How Hard Users Climbed in 2017
+### Improving the Model
 
 ### Results - Why are these models not performing well?
 
