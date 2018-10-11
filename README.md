@@ -32,6 +32,7 @@ Next, I wanted to see if there was any relationship between the average spread o
  <img src="./graphs/rolling_score_vs_spread.png">
 
 Unfortunately, the average spreads for the previous games for both the home team and the away team don't have much predictive power for the actual spread, but I made a cool 3D spinning graph to further emphasis this point.
+
  <img src="./graphs/rolling_score_vs_spread.gif">
 
 ### Feature Selection
