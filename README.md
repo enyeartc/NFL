@@ -1,12 +1,16 @@
 # Betting the Spread
 
 ### Motivation and Background
+Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread. However, since 2012, the Broncos have beaten the spread in 51% of the games they played.
 
-Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread.
+<img src="./graphs/broncos_against_the_spread.png" width="250">
 
-<img src="./images/broncos_spread.png" width="200" >
+But if I had to guess whether or not the Broncos cover the spread this weekend again the undefeated Los Angles Rams, I would guess that they don't.
+
+<img src="./images/broncos_spread.png" width="250">
 
 My dad's faithful criticism of the Broncos has inspired me to try and build a model to predict whether an NFL team beat the spread or not. For the scope of the project, I am only looking at Regular Season NFL Games from 2012 to 2018.
+
 
 ### The Data
 I initially wrote a web scrapper using BeautifulSoup to gather the closing odds
