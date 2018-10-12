@@ -10,11 +10,8 @@ For Example:
 
 <img src="./images/broncos_spread.png" width="400">
 
-Los Angels Rams -7
 
-Denver Broncos +7
-
-As you can see, the Rams are a 7-point favorite which means they would need to win the game by five points or more to cover the spread. Conversely, the Broncos are a 7-point underdog which means they would need to win or not lose the game by more than 7 points to cover the spread. If LA wins 20-17, then they win by three points and did NOT cover the 7 points, but Denver has “covered the spread” because they stayed within 7 points.
+As you can see, the Rams are a 7-point favorite which means they would need to win the game by more than 7 points to cover the spread. Conversely, the Broncos are a 7-point underdog which means they would need to win or not lose the game by more than 7 points to cover the spread. If LA wins 20-17, then they win by three points and did NOT cover the 7 points, but Denver has “covered the spread” because they stayed within 7 points.
 
 ##### Broncos Historically Against the Spread
 <img src="./graphs/broncos_against_the_spread.png" width="500">
