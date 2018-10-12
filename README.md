@@ -26,13 +26,13 @@ My goal was to predict the total point differential for an NFL Game (Away Team S
 
 ### The Data
 
-The game data for this project came from the <a href="https://developer.fantasydata.com/docs/services/57a0190935491a1858749954/operations/58137f1c35491a1520575141/console">Fantasy Data API</a>, which had 242 individual features for every game. From the available attributes, I selected 35 that I thought most contributed to predicting the spread. Passing Yards, Rushing Yards, Touchdowns, and Turnover Differential were among some of the features I selected.
+The game data for this project came from the <a href="https://developer.fantasydata.com/docs/services/57a0190935491a1858749954/operations/58137f1c35491a1520575141/console">Fantasy Data API</a>, which provides historical averages, season averages, team game statistics, individual player statistics, and play-by-play information for multiple sports. I used a free trial to access the data for this project.
 
 Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing odds set by every casino from <a href=" http://www.vegasinsider.com"> Vegas Insiders </a> for each NFL game over the past several years. My plan was to merge the data from Vegas Insider with the NFL game statistics. However, after analyzing the data, I wasn't able to efficiently combine the Vegas Insider data with the statistics from the Fantasy Data API since the key values were not consistent, and the Fantasy Data API already had some data on the point spread.
 
 ### EDA
 
-When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less 44% of the time.
+When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less than 45% of the time.
 
  <img src="./graphs/beat_the_spread_by_team.png" width="800">
 
@@ -47,7 +47,7 @@ Unfortunately, the average spreads for the previous games for both the home team
 ### Feature Engineering
 The game statistics came from the Fantasy Data API, which had 242 individual features from each game. From the available attributes, I selected the 35 which I thought would be most predictive of the actual spread. Passing yards, rushing yards, third-down efficiency, and scoring statistics were among some of the features I initially selected from the API.
 
-Once I gathered and cleaned the data, I calculated a rolling average for each of the quantitative features over the previous 5 games for each team. I then combined the rolling averages with the NFL schedule and spread information to create my final dataset.
+Once I gathered and cleaned the data, I calculated a rolling average for each of the quantitative features over the previous 5 games for each team. I then combined the rolling averages from the home team and the away team with the NFL schedule and spread information to create my final dataset.
 
 ```
     # calculate moving averages for each team
@@ -60,9 +60,9 @@ Once I gathered and cleaned the data, I calculated a rolling average for each of
 
 ### Modeling the Spread
 
-Since none of the features seemed to have a clear indication point where teams started to beat the spread, I decided to use a Linear Regression instead of a Logistic Regression to predict the spread.
+I decided to use a Linear Regression to predict the difference in score instead of a Logistic Regression to predict whether or not a team beat the spread.
 
-To create the Linear Model, I imported the dataset, used StandardScaler to scale the data and the target, and divided the data into a training set and a validation set. Once I trained my model I plotted the qq-plot and the residuals against the predictions to check the validity of my model. The qq-plot appears to be approximately normal and the residuals appear to be heteroscedastic.
+To create the Linear Regression, I imported the dataset, used StandardScaler to scale the data and the target, and divided the data into a training set and a validation set. Once I trained my model I plotted the qq-plot and the residuals against the predictions to check the validity of my model. The qq-plot appears to be approximately normal and the residuals appear to be heteroscedastic.
 
 Heteroscedasity           |  qq-plot
 :-------------------------:|:-------------------------:
@@ -75,7 +75,7 @@ Heteroscedasity           |  qq-plot
 |Train Score | 0.48838864 | 0.53382886 | 0.49193608 | 0.51867646 | 0.4660482 | 0.47663457 | 0.4947181 | 0.45713115 | 0.49576167 | 0.4938967 | 0.491702043|
 |Test Score | -0.21925802 | -4.10123721 |  0.01212025 | -0.50508861 |  0.2166948 | 0.04728843 | -0.76572212 |  0.29539195 |  0.01962774 | -0.12234241 | -0.51225252|
 
-When I cross-validated my Linear Model that used all of the features, I got an average R^2 of about 0.49 for the training data and an average R^2 of about -0.51. Since the R^2 for the training data is much higher than the R^2 for the test data, it suggests that the model is too complex and is offer fitting the training data.
+When I cross-validated my Linear Model that used all of the features I selected, I got an average R^2 of about 0.49 for the training data and an average R^2 of about -0.51. Since the R^2 for the training data is much higher than the R^2 for the test data, it suggests that the model is too complex and is offer fitting the training data.
 
 ### Improving the Model
 
@@ -119,7 +119,7 @@ Two weeks after that game, the Bills traveled to play the Baltimore Ravens on th
 
 <img src="./images/bills_ravens.png">
 
-These large swings in weekly performance exemplified by the Bills, Ravens, and Browns make it difficult to identify trends in the data and predict the actual spread in the score. 
+These large swings in weekly performance exemplified by the Bills, Ravens, and Browns in their last several games make it difficult to identify trends in the data and predict the actual spread in the score. 
 
 ### Future Work
-
+I would like to try reducing the complexity of my model further and consider adding the scores from previous matchups to the model to see if that helps increase accuracy. 
