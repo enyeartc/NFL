@@ -110,7 +110,7 @@ To improve the model, I used a Lasso Regression to limit the complexity of the m
 
 
 ### Results
-####Why are these models not performing well?
+#### Why are these models not performing well?
 The NFL has proven to be a very unpredictable league.  Within the last three weeks, the Buffalo Bills, a team that is tied for last in their division, has a rookie at quarterback, and ranked second to last in the NFL Power Rankings, beat the Minnesota Vikings,  which is a team that has a veteran quarterback and was ranked number 2 in the NFL Power Rankings, by three touchdowns for a final score of 27-6. 
 
 Two weeks after that game, the Bills traveled to play the Baltimore Ravens on the road. The Ravens were ranked number 10 in the Power Rankings and decidedly beat the Ravens by a final score of 47-3. The week after their 44 point win, the Ravens lost to the Cleveland Browns 9-12 on the road.
