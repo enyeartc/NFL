@@ -4,7 +4,7 @@
 Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread.
 
 ##### Spread Definition
-A point spread in sports is a figure set by oddsmakers to provide an advantage or disadvantage based on the margin of victory or defeat for a given team. The “favorite” team (labeled with a “-” sign) would be at the disadvantage as they would need to win the game by a set number of points while the “underdog” team (labeled with a “+” sign) would be given an advantage to not lose the game by a set number of points. The reason oddsmakers do this is to provide betting interest for both sides due to one team typically being better than the other. (Source: <a href="https://www.oddsshark.com/sports-betting/point-spread-betting"> Odds Shark</a>
+A point spread in sports is a figure set by oddsmakers to provide an advantage or disadvantage based on the margin of victory or defeat for a given team. The “favorite” team (labeled with a “-” sign) would be at the disadvantage as they would need to win the game by a set number of points while the “underdog” team (labeled with a “+” sign) would be given an advantage to not lose the game by a set number of points. The reason oddsmakers do this is to provide betting interest for both sides due to one team typically being better than the other. (Source: <a href="https://www.oddsshark.com/sports-betting/point-spread-betting"> Odds Shark</a>)
 
 For Example:
 
