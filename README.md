@@ -21,10 +21,10 @@ Even though the Broncos never seemingly beat the spread, since 2012, the Broncos
 
 My dad's faithful criticism of the Broncos inspired me to try and build a model to predict whether an NFL team beat the spread or not. For the scope of the project, I am only looking at Regular Season NFL Games from 2012 to 2018.
 
-
-### The Data
 #### The Target
 My goal was to predict the total point differential for an NFL Game (Away Team Score - Home Team Score) and compare that to the spreads set by the Vegas Oddsmakers.
+
+### The Data
 
 The game data for this project came from the <a href="https://developer.fantasydata.com/docs/services/57a0190935491a1858749954/operations/58137f1c35491a1520575141/console">Fantasy Data API</a>, which had 242 individual features for every game. From the available attributes, I selected 35 that I thought most contributed to predicting the spread. Passing Yards, Rushing Yards, Touchdowns, and Turnover Differential were among some of the features I selected.
 
