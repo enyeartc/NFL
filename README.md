@@ -32,7 +32,12 @@ Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing o
 
 ### EDA
 
-When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less than 45% of the time.
+When I first approached this problem, I wanted to see how accurate Vegas's predictions were. Over the past five years Vegas has been able to accurately predict the winner of a game about 85% of the time. 
+
+ <img src="./graphs/vegas_predictions.png" width="800">
+
+
+I aslo wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less than 45% of the time.
 
  <img src="./graphs/beat_the_spread_by_team.png" width="800">
 
