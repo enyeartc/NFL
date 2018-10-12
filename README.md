@@ -23,13 +23,12 @@ My dad's faithful criticism of the Broncos inspired me to try and build a model 
 
 
 ### The Data
+#### The Target
+My goal was to predict the total point differential for an NFL Game (Away Team Score - Home Team Score) and compare that to the spreads set by the Vegas Oddsmakers.
 
-<!-- https://developer.fantasydata.com/docs/services/57a0190935491a1858749954/operations/58137f1c35491a1520575141/console -->
-<!-- http://www.vegasinsider.com -->
+The game data for this project came from the <a href="https://developer.fantasydata.com/docs/services/57a0190935491a1858749954/operations/58137f1c35491a1520575141/console">Fantasy Data API</a>, which had 242 individual features for every game. From the available attributes, I selected 35 that I thought most contributed to predicting the spread. Passing Yards, Rushing Yards, Touchdowns, and Turnover Differential were among some of the features I selected.
 
-The game data for this project came from the Fantasy Data API, which had 242 individual features for every game. From the available attributes, I selected 35 that I thought most contributed to predicting the spread. Passing Yards, Rushing Yards, Touchdowns, and Turnover Differential were among some of the features I selected.
-
-Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing odds set by every casino from Vegas Insiders for each NFL game over the past several years. My plan was to merge the data from Vegas Insider with the NFL game statistics. However, after analyzing the data, I wasn't able to efficiently combine the Vegas Insider data with the statistics from the Fantasy Data API since the key values were not consistent, and the Fantasy Data API already had some data on the point spread.
+Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing odds set by every casino from <a href=" http://www.vegasinsider.com"> Vegas Insiders </a> for each NFL game over the past several years. My plan was to merge the data from Vegas Insider with the NFL game statistics. However, after analyzing the data, I wasn't able to efficiently combine the Vegas Insider data with the statistics from the Fantasy Data API since the key values were not consistent, and the Fantasy Data API already had some data on the point spread.
 
 ### EDA
 
