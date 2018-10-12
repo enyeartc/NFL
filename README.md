@@ -3,11 +3,24 @@
 ### Background
 Growing up in Denver, I religiously watched the Broncos with my dad every Sunday. Throughout my years as a Bronco fan, there have been a lot of ups and downs - namely Super Bowl 48 and Super 50 - but if one thing has stayed consistent, it is my dad yelling at the tv that the Broncos never beat the spread.
 
-<img src="./graphs/broncos_against_the_spread.png" width="500">
+##### Spread Definition
+A point spread in sports is a figure set by oddsmakers to provide an advantage or disadvantage based on the margin of victory or defeat for a given team. The “favorite” team (labeled with a “-” sign) would be at the disadvantage as they would need to win the game by a set number of points while the “underdog” team (labeled with a “+” sign) would be given an advantage to not lose the game by a set number of points. The reason oddsmakers do this is to provide betting interest for both sides due to one team typically being better than the other.
 
-Even though the Broncos never seemingly beat the spread, since 2012, the Broncos have beaten the spread in 51% of the games they played. But if I had to guess whether or not the Broncos cover the spread this weekend against the undefeated Los Angles Rams, I would bet that they don't because the Broncos never beat the spread.
+For Example:
 
 <img src="./images/broncos_spread.png" width="400">
+
+Los Angels Rams -7
+
+Denver Broncos +7
+
+As you can see, the Rams are a 7-point favorite which means they would need to win the game by five points or more to cover the spread. Conversely, the Broncos are a 7-point underdog which means they would need to win or not lose the game by more than 7 points to cover the spread. If LA wins 20-17, then they win by three points and did NOT cover the 7 points, but Denver has “covered the spread” because they stayed within 7 points.
+
+##### Broncos Historically Against the Spread
+<img src="./graphs/broncos_against_the_spread.png" width="500">
+
+Even though the Broncos never seemingly beat the spread, since 2012, the Broncos have covered the spread in 51% of the games they played. But if I had to guess whether or not the Broncos cover the spread this weekend against the undefeated Los Angles Rams, I would bet that they don't because the Broncos never beat the spread.
+
 
 My dad's faithful criticism of the Broncos inspired me to try and build a model to predict whether an NFL team beat the spread or not. For the scope of the project, I am only looking at Regular Season NFL Games from 2012 to 2018.
 
@@ -25,7 +38,7 @@ Additionally, I wrote a web scrapper using BeautifulSoup to gather the closing o
 
 When I first approached this problem, I wanted to see if certain teams covered the spread more consistently than others.  The bar chart below outlines the percentage of games that each team covered the spread since 2012. As you can notice, teams like the Minnesota Vikings, Cinncinati Bengals, and the New England Patriots cover the spread around 60% of the time, while other teams like the Baltimore Ravens, Cleveland Browns, and the Tennessee Titans only beat the spread less 44% of the time.
 
- <img src="./graphs/beat_the_spread_by_team.png" widtch="900">
+ <img src="./graphs/beat_the_spread_by_team.png" width="800">
 
 Next, I wanted to see if there was any relationship between the average spread of the home team's previous game and the actual spread for the game. I also created a graph to illustrate the same relationship for the opposing team.
 
@@ -35,7 +48,7 @@ Unfortunately, the average spreads for the previous games for both the home team
 
  <img src="./graphs/rolling_score_vs_spread.gif" width="700">
 
-### Feature Selection
+### Feature Engineering
 The game statistics came from the Fantasy Data API, which had 242 individual features from each game. From the available attributes, I selected the 35 which I thought would be most predictive of the actual spread. Passing yards, rushing yards, third-down efficiency, and scoring statistics were among some of the features I initially selected from the API.
 
 Once I gathered and cleaned the data, I calculated a rolling average for each of the quantitative features over the previous 5 games for each team. I then combined the rolling averages with the NFL schedule and spread information to create my final dataset.
@@ -70,7 +83,7 @@ When I cross-validated my Linear Model that used all of the features, I got an a
 
 ### Improving the Model
 
-To improve the model, I used a Lasso Regression to limit the complexity of the model. LassoCV gave me an optimum alpha of about 0.7 and reduced my dataset from 60 features to 17 meaningful attributes.
+To improve the model, I used a Lasso Regression to limit the complexity of the model. LassoCV gave me an optimum alpha of about 0.7 and reduced my dataset from about 60 features to 17 meaningful attributes.
 
 | Feature| Coefficients|
 |--------|-------|
